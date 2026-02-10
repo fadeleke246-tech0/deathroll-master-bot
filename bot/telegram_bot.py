@@ -1,11 +1,12 @@
 import os
 from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters
+from telegram.ext import (
+    ApplicationBuilder,
+    MessageHandler,
+    ContextTypes,
+    filters,
+)
 from .brain import Brain
-
-TOKEN = os.getenv("TELEGRAM_TOKEN")
-
-brain = Brain()
 
 async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
