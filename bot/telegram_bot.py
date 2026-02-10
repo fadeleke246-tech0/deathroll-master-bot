@@ -1,7 +1,7 @@
 import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
-from ..brain import Brain
+from brain import Brain
 
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 
