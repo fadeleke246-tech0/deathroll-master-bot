@@ -7,7 +7,7 @@ from telegram.ext import (
     filters,
 )
 
-from brain import Brain  # make sure brain.py exists
+ from .brain import Brain # make sure brain.py exists
 
 # create brain instance
 brain = Brain()
