@@ -1,17 +1,12 @@
 from brain import Brain
-import time
 
-def main():
-    brain = Brain()
-    print("Deathroll bot is running")
+print("Deathroll bot is running")
 
-    tests = ["hello", "status", "help", "unknown command"]
+brain = Brain()
 
-    for text in tests:
-        print("You:", text)
-        reply = brain.think(text)
-        print("Bot:", reply)
-        time.sleep(1)
+tests = ["hello", "who are you", "status"]
 
-if __name__ == "__main__":
-    main()
+for text in tests:
+    print("\nYou:", text)
+    reply = brain.think(text)
+    print("Bot:", reply)
