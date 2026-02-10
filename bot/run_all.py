@@ -1,4 +1,4 @@
-from brain import Brain
+from bot.brain import Brain
 
 brain = Brain()
 
