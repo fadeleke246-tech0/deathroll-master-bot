@@ -1,14 +1,14 @@
-from bot.brain import Brain
-import time
+from brain import Brain
 
-brain = Brain()
+def main():
+    brain = Brain()
+    print("Deathroll bot is running")
 
-print(brain.think())
+    # test inputs
+    while True:
+        user_input = input("You: ")
+        reply = brain.think(user_input)
+        print("Bot:", reply)
 
-brain.set_state("scanning")
-print(brain.think())
-
-time.sleep(2)
-
-brain.set_state("posting")
-print(brain.think())
+if __name__ == "__main__":
+    main()
