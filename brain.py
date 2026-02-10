@@ -1,16 +1,17 @@
 class Brain:
     def __init__(self):
-        self.state = "idle"
+        self.memory = []
 
-    def think(self):
-        if self.state == "idle":
-            return "Waiting for tasks..."
-        elif self.state == "scanning":
-            return "Scanning for new content..."
-        elif self.state == "posting":
-            return "Posting content..."
-        else:
-            return "Unknown state"
+    def think(self, text: str) -> str:
+        self.memory.append(text.lower())
 
-    def set_state(self, new_state):
-        self.state = new_state
+        if "hello" in text.lower():
+            return "Hello 👋 I am Deathroll bot."
+
+        if "help" in text.lower():
+            return "I can scan, analyze, and report. More features coming."
+
+        if "status" in text.lower():
+            return "I'm alive and running smoothly 😎"
+
+        return "I heard you. I'm still learning."
