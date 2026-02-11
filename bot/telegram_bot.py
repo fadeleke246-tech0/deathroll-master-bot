@@ -1,3 +1,4 @@
+
 import os
 from telegram import Update
 from telegram.ext import (
@@ -20,11 +21,12 @@ async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
-    token = os.getenv("TELEGRAM_TOKEN")
+    token = os.getenv("BOT_TOKEN")
     if not token:
-        raise RuntimeError("TELEGRAM_TOKEN is not set")
+        raise RuntimeError("BOT_TOKEN environment variable not set")
 
     app = ApplicationBuilder().token(token).build()
+
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, reply))
 
     print("Telegram bot is live...")
