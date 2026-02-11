@@ -1,35 +1,34 @@
-
 import os
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder,
+    CommandHandler,
     MessageHandler,
     ContextTypes,
     filters,
 )
 
-from .brain import Brain
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+if not BOT_TOKEN:
+    raise RuntimeError("BOT_TOKEN environment variable not set")
 
 
-brain = Brain()
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("Hello 👋 I am alive!")
 
 
-async def reply(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    text = update.message.text
-    answer = brain.think(text)
-    await update.message.reply_text(answer)
+async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(update.message.text)
 
 
 def main():
-    token = os.getenv("BOT_TOKEN")
-    if not token:
-        raise RuntimeError("BOT_TOKEN environment variable not set")
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
 
-    app = ApplicationBuilder().token(token).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
 
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, reply))
-
-    print("Telegram bot is live...")
+    print("🤖 Telegram bot is running...")
     app.run_polling()
 
 
