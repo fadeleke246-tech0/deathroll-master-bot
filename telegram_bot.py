@@ -54,7 +54,18 @@ async def generate_game(update: Update, context: ContextTypes.DEFAULT_TYPE):
 """
 
     await update.message.reply_text(game_idea, parse_mode="Markdown")
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
+async def generate(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(
+        "🎮 Generating a new game idea...\n\n"
+        "🕹 Name: Shadow Runner\n"
+        "🎯 Type: 2D Platformer\n"
+        "💰 Monetization: Ads + In-app purchases\n"
+        "📈 Target: Mobile Players\n\n"
+        "Game concept sent successfully!"
+    )
 
 # ---------------- MAIN FUNCTION ----------------
 def main():
